@@ -7,7 +7,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
 import productsReducer from './store/reducers/products';
-import ShopNavigations from './navigations/ShopNavigations';
 import ProductOverviewScreen from './screens/ProductOverviewScreen';
 
 const rootReducer = combineReducers({
