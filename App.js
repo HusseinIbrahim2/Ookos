@@ -26,8 +26,6 @@ export default function App() {
             <Stack.Screen name='Home' component={ProductOverviewScreen} options={{ title:'All Products' }} />
           </Stack.Navigator>
         </NavigationContainer>
-
-
       </Provider>
     </>
   );
