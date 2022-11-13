@@ -8,6 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import productsReducer from './store/reducers/products';
 import ProductOverviewScreen from './screens/ProductOverviewScreen';
+import ProductDetail from './screens/ProductDetailsScreen';
 
 const rootReducer = combineReducers({
   products: productsReducer
@@ -24,6 +25,7 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name='Home' component={ProductOverviewScreen} options={{ title:'All Products' }} />
+            <Stack.Screen name='ProductDetails' component={ProductDetail}  />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
