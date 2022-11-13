@@ -1,25 +1,35 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, Button } from "react-native";
+import { View, Text, StyleSheet, Image, Button, TouchableOpacity, Platform, TouchableNativeFeedback } from "react-native";
 
 const ProductItems = props => {
 
+    let TouchableCmp = TouchableOpacity;
+
+    if (Platform.OS == 'android' && Platform.Version >= 21) {
+        TouchableCmp = TouchableNativeFeedback;
+    }
+
     return (
-        <View style={styles.container}>
-            <View style={styles.imageContainer}>
-                <Image style={styles.image} source={{ uri: props.image }} />
-            </View>
-            <View style={styles.details} >
-                <Text style={styles.title}>{props.title}</Text>
-                <Text style={styles.price} >${props.price.toFixed(2)} </Text>
-            </View>
-            <View style={styles.buttonContainer}>
-                <View style={styles.innerButton}>
-                    <Button title="View details" onPress={props.onViewDetails} />
+        <View>
+            <TouchableCmp onPress={props.onViewDetails} useForeground >
+                <View style={styles.container}>
+                    <View style={styles.imageContainer}>
+                        <Image style={styles.image} source={{ uri: props.image }} />
+                    </View>
+                    <View style={styles.details} >
+                        <Text style={styles.title}>{props.title}</Text>
+                        <Text style={styles.price} >${props.price.toFixed(2)} </Text>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <View style={styles.innerButton}>
+                            <Button title="View details" onPress={props.onViewDetails} />
+                        </View>
+                        <View style={styles.innerButton}>
+                            <Button title="Add to cart" onPress={props.onAddToCart} />
+                        </View>
+                    </View>
                 </View>
-                <View style={styles.innerButton}>
-                    <Button title="Add to cart" onPress={props.onAddToCart} />
-                </View>
-            </View>
+            </TouchableCmp>
         </View>
     )
 }
@@ -35,6 +45,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
+        overflow: 'hidden'
     },
     imageContainer: {
         width: "100%",
