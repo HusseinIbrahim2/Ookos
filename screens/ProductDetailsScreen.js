@@ -1,12 +1,14 @@
 import { Text, View, ScrollView, StyleSheet, Image, Button } from "react-native";
 import { useLayoutEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import { useSelector } from "react-redux";
-
+import * as cartAction from '../store/actions/cart';
 const ProductDetail = props => {
 
     const productId = props.route.params.prodId;
     const selectedProduct = useSelector(state => state.products.availabelProducts.find(prod => prod.id == productId))
+
+    const dispatch = useDispatch();
 
     useLayoutEffect(() => {
 
@@ -21,7 +23,7 @@ const ProductDetail = props => {
         <ScrollView>
             <Image style={styles.image} source={{ uri: selectedProduct.imageUrl }} />
             <View style={styles.buttonContainer} >
-                <Button title="Add to cart" />
+                <Button title="Add to cart" onPress={dispatch(cartAction.addToCart(selectedProduct))} />
             </View>
             <View style={styles.details} >
                 <Text style={styles.price} >${selectedProduct.price.toFixed(2)} </Text>
@@ -51,14 +53,14 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#888',
     },
-    description:{
+    description: {
         alignItems: 'center',
         marginHorizontal: 25,
         marginVertical: 20,
     },
-    descriptionText:{
-        textAlign:'center',
-        fontSize:18,
+    descriptionText: {
+        textAlign: 'center',
+        fontSize: 18,
     },
 });
 
