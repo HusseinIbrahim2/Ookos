@@ -8,7 +8,7 @@ const initialState = {
 
 export default function productsReducer(state = initialState, action) {
     switch (action.type) {
-        case ADD_TO_CART: {
+        case ADD_TO_CART:
             const addedProduct = action.product;
             const prodPrice = addedProduct.price;
             const prodTitle = addedProduct.title;
@@ -17,26 +17,19 @@ export default function productsReducer(state = initialState, action) {
 
             if (state.items[addedProduct.id]) {
                 newOrUpdatedItem = new Cart_Item(
-                    ...state.items[addedProduct.id].quantity + 1,
+                    state.items[addedProduct.id].quantity + 1,
                     prodPrice,
                     prodTitle,
-                    ...state.items[addedProduct.id].sum + prodPrice
+                    state.items[addedProduct.id].sum + prodPrice
                 );
-                return {
-                    ...state,
-                    items: { ...state.items, [addedProduct.id]: newOrUpdatedItem },
-                    totalAmount: state.totalAmount + newOrUpdatedItem.productPrice
-                }
-            }
-            else {
+            } else {
                 newOrUpdatedItem = new Cart_Item(1, prodPrice, prodTitle, prodPrice);
-                return {
-                    ...state,
-                    items: { ...state.items, [addedProduct.id]: newOrUpdatedItem },
-                    totalAmount: state.totalAmount + prodPrice
-                }
             }
-        }
+            return {
+                ...state,
+                items: { ...state.items, [addedProduct.id]: newOrUpdatedItem },
+                totalAmount: state.totalAmount + prodPrice
+            };
     }
     return state;
 }
