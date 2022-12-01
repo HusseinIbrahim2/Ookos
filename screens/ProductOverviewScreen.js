@@ -15,13 +15,20 @@ const ProductOverviewScreen = props => {
 
     useLayoutEffect(() => {
         props.navigation.setOptions({
-            headerRight: () => {
-                return (
-                    <HeaderButtons HeaderButtonComponent={CustomHeaderButton} >
-                        <Item title="Cart" iconName="shopping-cart" color="black" />
-                    </HeaderButtons>
-                )
-            }
+                headerRight: () => {
+                    return (
+                        <HeaderButtons HeaderButtonComponent={CustomHeaderButton} >
+                            <Item
+                                title="Cart"
+                                iconName="shopping-cart"
+                                color="black"
+                                onPress={() => {
+                                    props.navigation.navigate('CarteScreen')
+                                }}
+                            />
+                        </HeaderButtons>
+                    )
+                }
         })
 
     }, [props.navigation])

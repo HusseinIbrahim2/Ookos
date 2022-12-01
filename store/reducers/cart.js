@@ -6,7 +6,7 @@ const initialState = {
     totalAmount: 0,
 };
 
-export default function productsReducer(state = initialState, action) {
+export default function cartReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_TO_CART:
             const addedProduct = action.product;

@@ -7,11 +7,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
 import productsReducer from './store/reducers/products';
+import cartReducer from './store/reducers/cart';
 import ProductOverviewScreen from './screens/ProductOverviewScreen';
 import ProductDetail from './screens/ProductDetailsScreen';
+import CartItemsScreen from './screens/CartItemsScreen';
 
 const rootReducer = combineReducers({
-  products: productsReducer
+  products: productsReducer,
+  cart : cartReducer
 });
 
 const store = configureStore({ reducer: rootReducer });
@@ -26,6 +29,7 @@ export default function App() {
           <Stack.Navigator>
             <Stack.Screen name='Home' component={ProductOverviewScreen} options={{ title:'All Products' }} />
             <Stack.Screen name='ProductDetails' component={ProductDetail}  />
+            <Stack.Screen name='CarteScreen' component={CartItemsScreen}  />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
