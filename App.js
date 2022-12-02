@@ -14,10 +14,16 @@ import CartItemsScreen from './screens/CartItemsScreen';
 
 const rootReducer = combineReducers({
   products: productsReducer,
-  cart : cartReducer
+  cart: cartReducer
 });
 
-const store = configureStore({ reducer: rootReducer });
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+});
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -27,9 +33,9 @@ export default function App() {
       <Provider store={store} >
         <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen name='Home' component={ProductOverviewScreen} options={{ title:'All Products' }} />
-            <Stack.Screen name='ProductDetails' component={ProductDetail}  />
-            <Stack.Screen name='CarteScreen' component={CartItemsScreen}  />
+            <Stack.Screen name='Home' component={ProductOverviewScreen} options={{ title: 'All Products' }} />
+            <Stack.Screen name='ProductDetails' component={ProductDetail} />
+            <Stack.Screen name='CarteScreen' component={CartItemsScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
