@@ -11,10 +11,12 @@ import cartReducer from './store/reducers/cart';
 import ProductOverviewScreen from './screens/ProductOverviewScreen';
 import ProductDetail from './screens/ProductDetailsScreen';
 import CartItemsScreen from './screens/CartItemsScreen';
+import orderReducer from './store/reducers/order';
 
 const rootReducer = combineReducers({
   products: productsReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  orders: orderReducer
 });
 
 const store = configureStore({
