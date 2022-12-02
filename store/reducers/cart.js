@@ -1,4 +1,4 @@
-import { ADD_TO_CART } from "../actions/cart";
+import { ADD_TO_CART, REMOVE_FROM_CART } from "../actions/cart";
 import Cart_Item from "../../models/cart-item";
 
 const initialState = {
@@ -30,6 +30,27 @@ export default function cartReducer(state = initialState, action) {
                 items: { ...state.items, [addedProduct.id]: newOrUpdatedItem },
                 totalAmount: state.totalAmount + prodPrice
             };
+        case REMOVE_FROM_CART:
+            const selectedCartItem = state.items[action.prodId];
+            const currentQty = selectedCartItem.quantity;
+            let updatedCartItems;
+            if (currentQty > 1) {
+                const updatedCartItem = new Cart_Item(
+                    selectedCartItem.quantity - 1,
+                    selectedCartItem.productPrice,
+                    selectedCartItem.productTitle,
+                    selectedCartItem.sum - selectedCartItem.productPrice
+                );
+                updatedCartItems = { ...state.items, [action.prodId]: updatedCartItem }
+            } else {
+                updatedCartItems = { ...state.items };
+                delete updatedCartItems[action.prodId];
+            }
+            return {
+                ...state,
+                items: updatedCartItems,
+                totalAmount: state.totalAmount - selectedCartItem.productPrice
+            }
     }
     return state;
 }
