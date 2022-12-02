@@ -9,7 +9,6 @@ import * as cartAction from '../store/actions/cart';
 import ProductItems from "../components/shop/ProductItems";
 
 const ProductOverviewScreen = props => {
-
     const products = useSelector(state => state.products.availabelProducts);
     const dispatch = useDispatch();
 
@@ -42,7 +41,7 @@ const ProductOverviewScreen = props => {
                 title={itemData.item.title}
                 price={itemData.item.price}
                 onViewDetails={() => {
-                    props.navigation.navigate('ProductDetails', { prodId: itemData.item.id })
+                    props.navigation.navigate('ProductDetails', { prodId: itemData.item.id , prodTitle: itemData.item.title })
                 }}
                 onAddToCart={() => {
                     dispatch(cartAction.addToCart(itemData.item));

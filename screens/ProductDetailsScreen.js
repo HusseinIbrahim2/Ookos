@@ -3,27 +3,25 @@ import { useLayoutEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import * as cartAction from '../store/actions/cart';
-const ProductDetail = props => {
 
+const ProductDetail = props => {
     const productId = props.route.params.prodId;
-    const selectedProduct = useSelector(state => state.products.availabelProducts.find(prod => prod.id == productId))
+    const productTitle = props.route.params.prodTitle;;
+    const selectedProduct = useSelector(state => state.products.availabelProducts.find(prod => prod.id == productId));
 
     const dispatch = useDispatch();
 
     useLayoutEffect(() => {
-
-        const productTitle = selectedProduct.title;
         props.navigation.setOptions({
             title: productTitle
         })
-
     }, [productId, props.navigation])
 
     return (
         <ScrollView>
             <Image style={styles.image} source={{ uri: selectedProduct.imageUrl }} />
             <View style={styles.buttonContainer} >
-                <Button title="Add to cart" onPress={dispatch(cartAction.addToCart(selectedProduct))} />
+                <Button title="Add to cart" onPress={() => {dispatch(cartAction.addToCart(selectedProduct))}} />
             </View>
             <View style={styles.details} >
                 <Text style={styles.price} >${selectedProduct.price.toFixed(2)} </Text>
