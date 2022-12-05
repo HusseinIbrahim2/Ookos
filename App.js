@@ -3,8 +3,6 @@ import { StyleSheet, Text } from 'react-native';
 import { Provider } from 'react-redux';
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
 
 import productsReducer from './store/reducers/products';
 import cartReducer from './store/reducers/cart';
@@ -12,6 +10,8 @@ import ProductOverviewScreen from './screens/ProductOverviewScreen';
 import ProductDetail from './screens/ProductDetailsScreen';
 import CartItemsScreen from './screens/CartItemsScreen';
 import orderReducer from './store/reducers/order';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
 
 const rootReducer = combineReducers({
   products: productsReducer,
@@ -26,7 +26,7 @@ const store = configureStore({
       serializableCheck: false,
     }),
 });
-const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
@@ -34,11 +34,11 @@ export default function App() {
       <StatusBar style="auto" />
       <Provider store={store} >
         <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen name='Home' component={ProductOverviewScreen} options={{ title: 'All Products' }} />
-            <Stack.Screen name='ProductDetails' component={ProductDetail} />
-            <Stack.Screen name='CarteScreen' component={CartItemsScreen} />
-          </Stack.Navigator>
+            <Drawer.Navigator initialRouteName="Home">
+                <Drawer.Screen name="Home" component={ProductOverviewScreen} />
+                <Drawer.Screen name="ProductDetails" component={ProductDetail} />
+                <Drawer.Screen name="CarteScreen" component={CartItemsScreen} />
+            </Drawer.Navigator>
         </NavigationContainer>
       </Provider>
     </>
