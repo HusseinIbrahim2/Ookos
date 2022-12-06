@@ -1,7 +1,9 @@
 import {View, Text, Button, StyleSheet} from 'react-native';
+import {useState} from "react";
+import CartItem from "./CartItem";
 
 const OrderItem = props => {
-
+    const [showDetails, setShowDetails] = useState(false);
     return (
         <View style={styles.orderItem}>
             <View style={styles.summary}>
@@ -10,8 +12,23 @@ const OrderItem = props => {
             </View>
             <Button
                 color='red'
-                title={'Show Details'}
+                title={showDetails ? 'Hide Details' : 'Show Details'}
+                onPress={() => {
+                    setShowDetails(prevState => !prevState);
+                }}
             />
+            {showDetails && (
+                <View style={styles.detailItems}>
+                    {props.items.map(cartItem => (
+                        <CartItem
+                            key={cartItem.productId}
+                            quantity={cartItem.quantity}
+                            amount={cartItem.sum}
+                            title={cartItem.productTitle}
+                        />
+                    ))}
+                </View>
+            )}
         </View>
     );
 };
