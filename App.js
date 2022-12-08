@@ -7,14 +7,15 @@ import {Entypo} from "@expo/vector-icons";
 
 import productsReducer from './store/reducers/products';
 import cartReducer from './store/reducers/cart';
-import ProductOverviewScreen from './screens/ProductOverviewScreen';
-import ProductDetail from './screens/ProductDetailsScreen';
-import CartItemsScreen from './screens/CartItemsScreen';
+import ProductOverviewScreen from './screens/shop/ProductOverviewScreen';
+import ProductDetail from './screens/shop/ProductDetailsScreen';
+import CartItemsScreen from './screens/shop/CartItemsScreen';
 import orderReducer from './store/reducers/order';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
-import OrdersScreen from "./screens/OrdersScreen";
+import OrdersScreen from "./screens/shop/OrdersScreen";
 import {createStackNavigator} from '@react-navigation/stack';
+import UserProductsScreen from "./screens/user/UserProductsScreen";
 
 
 const rootReducer = combineReducers({
@@ -52,6 +53,15 @@ const MyDrawer = () => {
                     headerTitle: 'Your Orders',
                     drawerIcon: drawerConfig => (
                         <Entypo name='add-to-list' size={20}/>
+                    )
+                }}/>
+            <Drawer.Screen
+                name="User"
+                component={UserProductsScreen}
+                options={{
+                    headerTitle: 'Your Products',
+                    drawerIcon: drawerConfig => (
+                        <Entypo name='user' size={20}/>
                     )
                 }}/>
         </Drawer.Navigator>
