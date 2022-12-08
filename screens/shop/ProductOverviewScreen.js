@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLayoutEffect } from "react";
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
-import CustomHeaderButton from '../components/UI/HeaderButton';
-import * as cartAction from '../store/actions/cart';
-import ProductItems from "../components/shop/ProductItems";
+import CustomHeaderButton from '../../components/UI/HeaderButton';
+import * as cartAction from '../../store/actions/cart';
+import ProductItems from "../../components/shop/ProductItems";
 
 const ProductOverviewScreen = props => {
     const products = useSelector(state => state.products.availabelProducts);

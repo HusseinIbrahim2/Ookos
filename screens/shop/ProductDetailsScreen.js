@@ -2,7 +2,7 @@ import { Text, View, ScrollView, StyleSheet, Image, Button } from "react-native"
 import { useLayoutEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import * as cartAction from '../store/actions/cart';
+import * as cartAction from '../../store/actions/cart';
 
 const ProductDetail = props => {
     const productId = props.route.params.prodId;

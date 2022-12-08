@@ -1,7 +1,7 @@
 import React from 'react';
 import {FlatList, Text} from 'react-native';
 import {useSelector} from 'react-redux';
-import OrderItem from "../components/shop/OrderItem";
+import OrderItem from "../../components/shop/OrderItem";
 
 const OrdersScreen = props => {
     const orders = useSelector(state => state.orders.orders);
