@@ -15,7 +15,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 import OrdersScreen from "./screens/shop/OrdersScreen";
 import {createStackNavigator} from '@react-navigation/stack';
-
+import UserProductScreen from "./screens/user/UserProductScreen";
 
 const rootReducer = combineReducers({
     products: productsReducer,
@@ -56,6 +56,16 @@ const MyDrawer = () => {
                         <Entypo name='add-to-list' size={20}/>
                     )
                 }}/>
+            <Drawer.Screen
+                name="Admin"
+                component={UserProductScreen}
+                options={{
+                    headerTitle: 'Your Products',
+                    drawerIcon: drawerConfig => (
+                        <Entypo name='user' size={20}/>
+                    )
+                }}/>
+
         </Drawer.Navigator>
     )
 }
@@ -69,7 +79,8 @@ export default function App() {
                     <Stack.Navigator>
                         <Stack.Screen name='Overview' component={MyDrawer} options={{headerShown: false}}/>
                         <Stack.Screen name='ProductDetails' component={ProductDetail}/>
-                        <Stack.Screen name='CarteScreen' component={CartItemsScreen} options={{ headerTitle: 'My cart'}} />
+                        <Stack.Screen name='CarteScreen' component={CartItemsScreen}
+                                      options={{headerTitle: 'My cart'}}/>
                     </Stack.Navigator>
                 </NavigationContainer>
             </Provider>
