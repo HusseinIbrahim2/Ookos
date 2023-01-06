@@ -1,5 +1,4 @@
 import {StatusBar} from 'expo-status-bar';
-import {StyleSheet, Text} from 'react-native';
 import {Provider} from 'react-redux';
 import {combineReducers} from 'redux';
 import {configureStore} from '@reduxjs/toolkit';
@@ -16,6 +15,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import OrdersScreen from "./screens/shop/OrdersScreen";
 import {createStackNavigator} from '@react-navigation/stack';
 import UserProductScreen from "./screens/user/UserProductScreen";
+import EditProductScreen from "./screens/user/EditProductScreen";
 
 const rootReducer = combineReducers({
     products: productsReducer,
@@ -43,7 +43,7 @@ const MyDrawer = () => {
                 component={ProductOverviewScreen}
                 options={{
                     headerTitle: 'All Products',
-                    drawerIcon: drawerConfig => (
+                    drawerIcon: () => (
                         <Entypo name='shopping-cart' size={20}/>
                     )
                 }}/>
@@ -52,7 +52,7 @@ const MyDrawer = () => {
                 component={OrdersScreen}
                 options={{
                     headerTitle: 'Your Orders',
-                    drawerIcon: drawerConfig => (
+                    drawerIcon: () => (
                         <Entypo name='add-to-list' size={20}/>
                     )
                 }}/>
@@ -61,7 +61,7 @@ const MyDrawer = () => {
                 component={UserProductScreen}
                 options={{
                     headerTitle: 'Your Products',
-                    drawerIcon: drawerConfig => (
+                    drawerIcon: () => (
                         <Entypo name='user' size={20}/>
                     )
                 }}/>
@@ -77,10 +77,21 @@ export default function App() {
             <Provider store={store}>
                 <NavigationContainer>
                     <Stack.Navigator>
-                        <Stack.Screen name='Overview' component={MyDrawer} options={{headerShown: false}}/>
-                        <Stack.Screen name='ProductDetails' component={ProductDetail}/>
-                        <Stack.Screen name='CarteScreen' component={CartItemsScreen}
-                                      options={{headerTitle: 'My cart'}}/>
+                        <Stack.Screen
+                            name='Overview'
+                            component={MyDrawer}
+                            options={{headerShown: false}}/>
+                        <Stack.Screen
+                            name='ProductDetails'
+                            component={ProductDetail}/>
+                        <Stack.Screen
+                            name='CarteScreen'
+                            component={CartItemsScreen}
+                            options={{headerTitle: 'My cart'}}/>
+                        <Stack.Screen
+                            name='EditScreen'
+                            component={EditProductScreen}
+                            options={{headerTitle: 'Edit Product'}}/>
                     </Stack.Navigator>
                 </NavigationContainer>
             </Provider>

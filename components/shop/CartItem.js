@@ -16,7 +16,7 @@ const CartItem = props => {
                         onPress={props.onRemove}
                         style={styles.deleteButton}
                     >
-                        <Ionicons name="trash" size={24} color="red"/>
+                        <Ionicons name="trash" size={22} color="red"/>
                     </TouchableOpacity>
                 )}
             </View>
@@ -30,21 +30,21 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginHorizontal: 20
+        marginHorizontal: 10
     },
     itemData: {
         flexDirection: 'row',
         alignItems: 'center'
     },
     quantity: {
-        fontSize: 16,
+        fontSize: 14,
         color: '#888'
     },
     mainText: {
-        fontSize: 16
+        fontSize: 14
     },
     deleteButton: {
-        marginLeft: 20
+        marginLeft: 6
     },
 });
 
