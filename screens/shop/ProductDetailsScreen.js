@@ -7,7 +7,7 @@ import * as cartAction from '../../store/actions/cart';
 const ProductDetail = props => {
     const productId = props.route.params.prodId;
     const productTitle = props.route.params.prodTitle;;
-    const selectedProduct = useSelector(state => state.products.availabelProducts.find(prod => prod.id == productId));
+    const selectedProduct = useSelector(state => state.products.availableProducts.find(prod => prod.id == productId));
 
     const dispatch = useDispatch();
 

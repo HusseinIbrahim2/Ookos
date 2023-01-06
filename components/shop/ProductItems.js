@@ -11,7 +11,7 @@ const ProductItems = props => {
 
     return (
         <View>
-            <TouchableCmp onPress={props.onViewDetails} useForeground >
+            <TouchableCmp onPress={props.onSelect} useForeground >
                 <View style={styles.container}>
                     <View style={styles.imageContainer}>
                         <Image style={styles.image} source={{ uri: props.image }} />
@@ -21,12 +21,7 @@ const ProductItems = props => {
                         <Text style={styles.price} >${props.price.toFixed(2)} </Text>
                     </View>
                     <View style={styles.buttonContainer}>
-                        <View style={styles.innerButton}>
-                            <Button title="View details" onPress={props.onViewDetails} />
-                        </View>
-                        <View style={styles.innerButton}>
-                            <Button title="Add to cart" onPress={props.onAddToCart} />
-                        </View>
+                        {props.children}
                     </View>
                 </View>
             </TouchableCmp>
@@ -61,12 +56,9 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        height: '25%',
-        paddingHorizontal: 10,
+        height: '22%',
+        paddingHorizontal: 20,
         alignItems: 'center'
-    },
-    innerButton: {
-        marginHorizontal: 10,
     },
     details: {
         alignItems: 'center',
