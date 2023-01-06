@@ -1,7 +1,6 @@
 import Order from "../../models/order";
 import { ADD_ORDER } from "../actions/orders";
 
-
 const initialState = {
     orders: [],
 };
@@ -23,3 +22,4 @@ export default function orderReducer(state = initialState, action) {
 
     return state;
 }
+
