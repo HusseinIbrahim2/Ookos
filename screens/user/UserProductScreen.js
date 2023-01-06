@@ -26,7 +26,6 @@ const UserProductScreen = props => {
                 )
             }
         })
-
     }, [props.navigation])
 
     const userProduct = useSelector(state => state.products.userProducts);
