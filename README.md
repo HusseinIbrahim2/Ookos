@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://reactnative.dev/" target="blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" width="200" alt="Nest Logo" /></a>
+  <a href="https://reactnative.dev/" target="_blank" rel="noopener noreferrer"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
 ## Description
