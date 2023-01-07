@@ -9,13 +9,14 @@ import CustomHeaderButton from "../../components/UI/HeaderButton";
 
 const UserProductScreen = props => {
 
+
     useLayoutEffect(() => {
         props.navigation.setOptions({
             headerRight: () => {
                 return (
                     <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
                         <Item
-                            title="Edit"
+                            title="Add"
                             iconName="new-message"
                             color="black"
                             onPress={() => {
@@ -30,8 +31,8 @@ const UserProductScreen = props => {
 
     const userProduct = useSelector(state => state.products.userProducts);
     const dispatch = useDispatch();
-    const ediProductHandler = () => {
-        props.navigation.navigate('EditScreen')
+    const ediProductHandler = id => {
+        props.navigation.navigate('EditScreen', {productId: id })
     }
     return (<FlatList
         data={userProduct}
@@ -55,6 +56,8 @@ const UserProductScreen = props => {
         }
     />)
 }
+
+
 
 
 export default UserProductScreen;
