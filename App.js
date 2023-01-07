@@ -91,7 +91,7 @@ export default function App() {
                         <Stack.Screen
                             name='EditScreen'
                             component={EditProductScreen}
-                            options={{headerTitle: 'Edit Product'}}/>
+                        />
                     </Stack.Navigator>
                 </NavigationContainer>
             </Provider>
