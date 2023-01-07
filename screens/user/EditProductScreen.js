@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useState} from "react";
+import React, {useCallback, useLayoutEffect, useState} from "react";
 import {View, Text, TextInput, StyleSheet, ScrollView} from "react-native";
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import {useSelector} from "react-redux";
@@ -17,6 +17,10 @@ const EditProductScreen = props => {
     const [price, setPrice] = useState(editedProduct ? editedProduct.price : '');
     const [description, setDescription] = useState(editedProduct ? editedProduct.description : '');
 
+    const submitHandler = useCallback(() => {
+        console.log("Submitted")
+    }, [])
+
     useLayoutEffect(() => {
         props.navigation.setOptions({
             title: isProdId ? 'Edit Product' : 'Add Product',
@@ -27,8 +31,7 @@ const EditProductScreen = props => {
                             title="Edit"
                             iconName="check"
                             color="black"
-                            onPress={() => {
-                            }}
+                            onPress={submitHandler}
                         />
                     </HeaderButtons>
                 )
@@ -51,7 +54,8 @@ const EditProductScreen = props => {
                 {editedProduct ? null :
                     <View style={styles.formControl}>
                         <Text style={styles.label}>Price</Text>
-                        <TextInput foc keyboardType='numeric' style={styles.input} value={price} onChangeText={setPrice}/>
+                        <TextInput foc keyboardType='numeric' style={styles.input} value={price}
+                                   onChangeText={setPrice}/>
                     </View>
                 }
                 <View style={styles.formControl}>
