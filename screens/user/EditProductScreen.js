@@ -1,11 +1,21 @@
-import React, {useLayoutEffect} from "react";
+import React, {useLayoutEffect, useState} from "react";
 import {View, Text, TextInput, StyleSheet, ScrollView} from "react-native";
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
+import {useSelector} from "react-redux";
+
 import CustomHeaderButton from "../../components/UI/HeaderButton";
+
 
 const EditProductScreen = props => {
 
     const isProdId = props.route.params?.productId;
+    const editedProduct = useSelector(state =>
+        state.products.userProducts.find(prod => prod.id == isProdId));
+
+    const [title, setTitle] = useState(editedProduct ? editedProduct.title : '')
+    const [imageUrl, setImageUrl] = useState(editedProduct ? editedProduct.imageUrl : '');
+    const [price, setPrice] = useState(editedProduct ? editedProduct.price : '');
+    const [description, setDescription] = useState(editedProduct ? editedProduct.description : '');
 
     useLayoutEffect(() => {
         props.navigation.setOptions({
@@ -24,7 +34,7 @@ const EditProductScreen = props => {
                 )
             }
         })
-    },[props.navigation , isProdId]);
+    }, [props.navigation, isProdId]);
 
 
     return (
@@ -32,19 +42,21 @@ const EditProductScreen = props => {
             <View style={styles.form}>
                 <View style={styles.formControl}>
                     <Text style={styles.label}>Title</Text>
-                    <TextInput style={styles.input}/>
+                    <TextInput style={styles.input} value={title} onChangeText={setTitle}/>
                 </View>
                 <View style={styles.formControl}>
                     <Text style={styles.label}>ImageUrl</Text>
-                    <TextInput style={styles.input}/>
+                    <TextInput style={styles.input} value={imageUrl} onChangeText={setImageUrl} v/>
                 </View>
+                {editedProduct ? null :
                     <View style={styles.formControl}>
                         <Text style={styles.label}>Price</Text>
-                        <TextInput keyboardType='numeric' style={styles.input}/>
+                        <TextInput foc keyboardType='numeric' style={styles.input} value={price} onChangeText={setPrice}/>
                     </View>
+                }
                 <View style={styles.formControl}>
                     <Text style={styles.label}>Description</Text>
-                    <TextInput style={styles.input}/>
+                    <TextInput style={styles.input} value={description} onChangeText={setDescription}/>
                 </View>
             </View>
         </ScrollView>
